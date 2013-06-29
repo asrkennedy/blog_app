@@ -2,10 +2,9 @@
   %ul
     - @posts.each do |post|
       %li
-        %h2= "#{blog['title']}"
-        %p="#{blog['content']}"
-        %p= Created at "#{blog['created_at']}"
+        %h2= "#{post['title']}"
+        %p="#{post['content']}"
+        %p= "Created at #{post['created_at']}"
 
 %footer
-  %button
-    Login
+  %a.btn{href: "/admin_connect"} Login

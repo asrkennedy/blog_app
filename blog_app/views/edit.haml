@@ -1,0 +1,8 @@
+<form action='/edit/<%= @edit_post['id'] %>' method='post'>
+     <ul>
+      <li>Title: <input type='text' title='title' value='<%= @edit_post['title'] %>' ></li>
+     <li>Content: <input type='text' name='content' value='<%= @edit_post['content'] %>' ></li>
+     <li>Created at: <input type='date' name='created_at' value='<%= @edit_post['created_at'] %>' ></li>
+   </ul>
+      <button> Submit!</button>
+      </form>

@@ -1,6 +1,6 @@
 require 'pry'
 require 'sinatra'
-require 'sinatra/contrib/all' if development?
+require 'sinatra/contrib/all'
 require 'pg'
 require 'haml'
 
@@ -8,13 +8,12 @@ before do
   @db = PG.connect(dbname: 'blog')
 end
 
-# after do
-#   db.close
-# end
+after do
+  @db.close
+end
 
 configure do
   enable :session
-  set :environment, 'development'
 end
 
 get '/' do
@@ -22,13 +21,28 @@ get '/' do
 haml :index
 end
 
-# get '/admin_connect' do
-#   if params["login"]== "andrea" and params["password"]=="password"
-#     session[:admin] = true
-#     redirect "/admin" #page not created yet...
-# end
+get '/admin_connect' do
+  if params["username"] == "andrea" and params["password"] == "password"
+    session[:admin] = true
+    redirect "/admin" #page not created yet...
+  end
+  haml :admin_connect
+end
 
-# get '/admin' do
-#   unless session[:admin] == true
-#     redirect "/"
-# end
+get '/admin' do
+  unless session[:admin] == true
+    redirect "/"
+  end
+
+  @posts = @db.exec("select * from blog;")
+  haml :admin
+end
+
+get '/edit' do
+@edit_post = db.exec("select * from blog where id = '#{params[:id]}';").first
+haml :edit
+end
+
+
+
+
