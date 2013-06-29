@@ -1,4 +1,4 @@
-form.form-horizontal
+%form.form-horizontal
   .control-group
     %label.control-label{for: :inputEmail } Username
     .controls
@@ -7,3 +7,9 @@ form.form-horizontal
     %label.control-label{for: :inputPassword } Password
     .controls
       %input#inputPassword{placeholder: "Password", type: "password", name: "password"}
+  .control-group
+    .controls
+      %label.checkbox
+        %input{type: "checkbox"}
+          Remember me
+      %button.btn{type: "submit"} Sign in

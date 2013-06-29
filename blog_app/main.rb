@@ -13,7 +13,7 @@ after do
 end
 
 configure do
-  enable :session
+  enable :sessions
 end
 
 get '/' do
@@ -22,34 +22,38 @@ haml :index
 end
 
 get '/admin_connect' do
-  if params["username"] == "andrea" and params["password"] == "password"
+  if params["username"] == "andrea" && params["password"] == "password"
     session[:admin] = true
-    redirect "/admin" #page not created yet...
+    redirect to '/admin' #page not created yet...
   end
   haml :admin_connect
 end
 
 get '/admin' do
   unless session[:admin] == true
-    redirect "/"
+    redirect to '/'
   end
-
   @posts = @db.exec("select * from blog;")
   haml :admin
 end
 
-get '/edit' do
-@edit_post = db.exec("select * from blog where id = '#{params[:id]}';").first
+get '/edit/:id' do
+@edit_post = @db.exec("select * from blog where id = '#{params[:id]}';").first
 haml :edit
 end
 
-post '/edit' do
+post '/edit/:id' do
   if params[:title]
-  @update_post = db.exec("update blog set title='#{params[:title]}, content='#{params['content']}, created_at='#{params[:created_at]} where if=#{params[:id]};")
+  @update_post = @db.exec("update blog set title='#{params[:title]}, content='#{params['content']}, created_at='#{params[:created_at]} where if=#{params[:id]};")
   end
   haml :edit
 end
 
+get '/delete/:id' do
+  @deleted_post = @db.exec("select * from blog where id = '#{params[:id]}';").first
+  @delete_post = @db.exec("delete from blog where id = '#{params[:id]}';").first
+  haml :delete
+end
 
 
 
