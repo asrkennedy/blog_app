@@ -43,6 +43,17 @@ get '/edit' do
 haml :edit
 end
 
+post '/edit' do
+  if params[:title]
+  @update_post = db.exec("update blog set title='#{params[:title]}, content='#{params['content']}, created_at='#{params[:created_at]} where if=#{params[:id]};")
+  end
+  haml :edit
+end
+
+
+
+
+
 
 
 

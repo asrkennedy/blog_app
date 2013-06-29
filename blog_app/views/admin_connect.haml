@@ -1,15 +1,9 @@
-%form.form-horizontal
+form.form-horizontal
   .control-group
-    %label.control-label{for: "username"} Username
+    %label.control-label{for: :inputEmail } Username
     .controls
-      %input#inputEmail{placeholder: "Username", type: "text"}
+      %input#inputEmail{placeholder: "Username", type: "text", name: "username"}
   .control-group
-    %label.control-label{for: "password"} Password
+    %label.control-label{for: :inputPassword } Password
     .controls
-      %input#inputPassword{placeholder: "Password", type: "password"}
-  .control-group
-    .controls
-      %label.checkbox
-        %input{type: "checkbox"}
-          Remember me
-      %button.btn{type: "submit"} Sign in
+      %input#inputPassword{placeholder: "Password", type: "password", name: "password"}
