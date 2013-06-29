@@ -1,0 +1,8 @@
+- if @posts.any?
+  %ul
+    - @posts.each do |post|
+      %li
+        %h2= "#{blog['title']}"
+        %p="#{blog['content']}"
+        %p= Created at "#{blog['created_at']}"
+
