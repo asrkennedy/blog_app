@@ -1,8 +1,14 @@
-%form{ :action =>'/edit/#{@edit_post['id']}', :method =>'post' }
-  %label{for: "title"} Title:
-  %input{type: "text", id: "title", name: "title" value:"#{@edit_post['title']}"}
-  %li
-    Content: <input type='text' name='content' value='#{@edit_post['content']}' >
-  %li
-    Created at: <input type='date' name='created_at' value='#{@edit_post['created_at']}' >
-%button Submit!
+%form{:action => "/edit/#{@edit_post['id']}", :method => "post"}
+  %label{:for => "title"}
+    = "Title:"
+    %br
+    %input{:type => "text", :id => "title", :name => "title", :value =>"#{@edit_post['title']}"}
+  %label{:for => "content"}
+    = "Content:"
+    %br
+    %input{:type => "text", :id => "content", :name => "content", :value =>"#{@edit_post['content']}"}
+  %label{:for => "created_at"}
+    = "Created at:"
+    %br
+    %input{:type => "date", :id => "created_at", :name => "created_at", :value => "#{@edit_post['created_at']}"}
+  %button.btn{:type => "submit"} Submit!

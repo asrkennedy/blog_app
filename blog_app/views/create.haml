@@ -1,0 +1,11 @@
+%form{:action => "/create", :method => "get"}
+  %label{:for => "title"}
+    = "Title:"
+    %input{:type => "text", :id => "title", :name => "title"}
+  %label{:for => "content"}
+    = "Content:"
+    %input{:type => "text", :id => "content", :name => "content"}
+  %label{:for => "created_at"}
+    = "Created at:"
+    %input{:type => "date", :id => "created_at", :name => "created_at"}
+  %button.btn{:type => "submit"} Submit!
